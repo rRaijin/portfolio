@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sss</title>
+</head>
+<body>
+<h1>User</h1>
+
+<ul>
+    <li>{{myuser.user_name}}</li>
+    <li>{{myuser.phone}}</li>
+    <li>{{myuser.last_name}}</li>
+    <li>{{locality.region}}</li>
+    <li>{{myuser.email}}</li>
+    <li>{{myuser.website}}</li>
+</ul>
+
+{% for skill in lanskills%}
+    {{skill.language}}
+{% endfor %}
+</body>
+</html>
