@@ -80,3 +80,13 @@ class RefereancesAdmin(admin.ModelAdmin):
         model = Refereances
 
 admin.site.register(Refereances, RefereancesAdmin)
+
+
+class OtherQualificationsAdmin(admin.ModelAdmin):
+    model = OtherQualifications
+    list_display = [field.name for field in OtherQualifications._meta.fields]
+
+    class Meta:
+        model = OtherQualifications
+
+admin.site.register(OtherQualifications, OtherQualificationsAdmin)

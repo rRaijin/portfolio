@@ -1,0 +1,34 @@
+body {
+    width: 90%;
+    margin: 10px auto;
+}
+header {
+
+}
+header img {
+    width: 100%;
+    height: 20px;
+}
+h1 {
+    color: #00a2ff;
+}
+footer {
+
+}
+footer img {
+    width: 100%;
+    height: 20px;
+}
+.left-block {
+    background-color: #ececec;
+}
+.user-photo {
+    width: 60%;
+    display: block;
+    margin: 20px auto;
+    border-radius: 50%;
+}
+h6 {
+    display: inline;
+    margin: 10px;
+}
