@@ -14,7 +14,7 @@ def profile(request, id):
     locality = get_object_or_404(Locality, human=my_user)
     design_skills = DesignSkills.objects.filter(human=my_user)
     languages = LanguageSkills.objects.filter(human=my_user)
-    interests = Interest.objects.filter(human=my_user)
+    interests = Interest.objects.filter(profile=my_user)
     refereances = Refereances.objects.filter(human=my_user)
     experience = WorkExperience.objects.filter(human=my_user)
     education = EducationQualifications.objects.filter(human=my_user)

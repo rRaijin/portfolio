@@ -26,28 +26,44 @@
         <h2>DESIGN SKILLS</h2>
         <ul>
         {% for skill in design_skills %}
-            <li><h6>Photoshop</h6>{{ skill.photoshop }}</li>
-            <li><h6>Illustrator</h6>{{ skill.illustrator }}</li>
-            <li><h6>Adobe XD</h6>{{ skill.adobexd }}</li>
-            <li><h6>Sketch</h6>{{ skill.sketch }}</li>
-            <li><h6>In Design</h6>{{ skill.indesign }}</li>
-            <li><h6>HTML/CSS</h6>{{ skill.imposition }}</li>
+            <li><h6>Photoshop</h6> <div class="progressbar-1" data-progress="{{ skill.photoshop }}"></div> {{ skill.photoshop }}</li>
+            <li><h6>Illustrator</h6><div class="progressbar-2" data-progress="{{ skill.illustrator }}"></div>{{ skill.illustrator }}</li>
+            <li><h6>Adobe XD</h6><div class="progressbar-3" data-progress="{{ skill.adobexd }}"></div>{{ skill.adobexd }}</li>
+            <li><h6>Sketch</h6><div class="progressbar-4" data-progress="{{ skill.sketch }}"></div>{{ skill.sketch }}</li>
+            <li><h6>In Design</h6><div class="progressbar-5" data-progress="{{ skill.indesign }}"></div>{{ skill.indesign }}</li>
+            <li><h6>HTML/CSS</h6><div class="progressbar-6" data-progress="{{ skill.imposition }}"></div>{{ skill.imposition }}</li>
         {% endfor %}
         </ul>
     </div>
     <div class="language-skills">
-        <h2>LANGUAGES</h2>
-        <ul>
+        <div class="row">
+            <h2>LANGUAGES</h2>
+            <ul>
             {% for skill in languages %}
-                <li><h6>Skill</h6>{{ skill }}</li>
+                <div class="col-lg-4">
+                <li>
+                    <div class="c100 p{{ skill.level }}">
+                        <span>{{ skill }}</span>
+                        <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+                </li>
+                </div>
             {% endfor %}
-        </ul>
+            </ul>
+        </div>
     </div>
     <div class="interest">
         <h2>INTERESTS</h2>
         <ul>
             {% for interest in interests %}
-                <li>{{ interest }}</li>
+                <li>
+                    {% if interest.interest_logotype %}
+                        <img src="{{ interest.interest_logotype.url }}" />
+                    {% endif %}
+                    {{ interest }}
+                </li>
             {% endfor %}
         </ul>
     </div>
@@ -80,6 +96,7 @@
             <ul>
                 <li>{{ item }}</li>
                 <li>{{ item.position }}</li>
+                <li>{{ item.work_start | date:"M, Y" }}--{{ item.work_end | date:"M, Y"}}</li>
                 <li>{{ item.work_duration }}</li>
                 <li>{{ item.description }}</li>
             </ul>

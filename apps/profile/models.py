@@ -2,6 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Interest(models.Model):
+    interest = models.CharField(max_length=50, blank=True, null=True)
+    interest_logotype = models.ImageField(upload_to="work_images/")
+
+    def __str__(self):
+        return self.interest
+
+
 class Profile(models.Model):
     user_name = models.OneToOneField(User, on_delete=models.CASCADE)
     last_name = models.CharField(max_length=50)
@@ -11,6 +19,7 @@ class Profile(models.Model):
     website = models.CharField(max_length=100, unique=True)
     phone = models.CharField(max_length=20, blank=True, null=True)
     statement = models.TextField()
+    interests = models.ManyToManyField(Interest)
 
     def __str__(self):
         return "%s %s" % (self.last_name, self.user_name)
@@ -72,18 +81,10 @@ class DesignSkills(models.Model):
 class LanguageSkills(models.Model):
     human = models.ForeignKey(Profile)
     language = models.CharField(max_length=100)
-    #level = models.CharField(max_length=50)
+    level = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.language
-
-
-class Interest(models.Model):
-    human = models.ForeignKey(Profile)
-    interest = models.TextField(blank=True, null=True)
-
-    def __str__(self):
-        return self.interest
 
 
 class Refereances(models.Model):
