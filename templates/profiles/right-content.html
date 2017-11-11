@@ -1,0 +1,50 @@
+{% load static %}
+
+<div class="personal-statement">
+    <h2><img src="{% static 'media/work_images/statement.jpg' %}" />PERSONAL STATEMENT</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut distinctio doloremque ducimus
+       impedit quia sint voluptatum! Ad commodi, eligendi ex exercitationem, incidunt laboriosam laudantium
+       libero necessitatibus non provident quod ut! Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+       Animi asperiores consequuntur earum enim facere fugiat iste laborum magnam nobis numquam officiis quia
+       ratione, recusandae sequi, sunt? Excepturi fuga id numquam.
+    </p>
+</div>
+
+<div class="work-experience">
+    <h2><img src="{% static 'media/work_images/experience.jpg' %}" />WORK EXPERIENCE</h2>
+    {% for item in experience %}
+        <ul>
+            <li>{{ item }}</li>
+            <li class="small">{{ item.position }}</li>
+            <li class="margin-date">{{ item.work_start | date:"M Y" }} - {{ item.work_end | date:"M Y"}}</li>
+{#            <li>{{ item.work_duration }}</li>#}
+            <li>{{ item.description | truncatewords:30 }}</li>
+        </ul>
+    {% endfor %}
+</div>
+
+<div class="education-qualifications">
+    <h2><img src="{% static 'media/work_images/education.jpg' %}" />EDUCATION QUALIFICATIONS</h2>
+    {% for item in education %}
+        <ul>
+            <li>{{ item }}</li>
+            <li>{{ item.school }}</li>
+            <li class="margin-date">{{ item.study_start | date:"Y" }} to {{ item.study_end | date:"Y"}}</li>
+{#            <li>{{ item.education_duration }}</li>#}
+            <li>{{ item.some_text | truncatewords:20 }}</li>
+        </ul>
+    {% endfor %}
+</div>
+
+<div class="other-qualifications">
+    <h2><img src="{% static 'media/work_images/other.jpg' %}" />OTHER QUALIFICATIONS</h2>
+    {% for item in other %}
+        <ul>
+            <li>{{ item }}</li>
+            <li>{{ item.web_sourse }}</li>
+            <li class="margin-date">{{ item.some_start | date:"M Y" }} to {{ item.some_end | date:"M Y"}}</li>
+{#            <li>{{ item.other_duration }}</li>#}
+            <li>{{ item.some_text }}</li>
+        </ul>
+    {% endfor %}
+</div>

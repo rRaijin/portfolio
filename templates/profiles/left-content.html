@@ -1,0 +1,73 @@
+<div class="general-info">
+    {% if user.photo %}
+        <img src="{{ user.photo.url }}" class="user-photo">
+    {% else %}
+        <img src="http://placehold.it/200x200" />
+    {% endif %}
+
+    <h1>{{ user.full_name }}</h1>
+    <h3>Current Job</h3>
+    <p>soc1 soc2 soc3 soc 4</p>
+    <p>{{ user.email }}</p>
+    <p>{{ user.phone }}</p>
+    <p>{{ user.website }}</p>
+    <p>{{ locality.full_locality }}</p>
+</div>
+
+<div class="design-skills">
+    <h2>DESIGN SKILLS</h2>
+    <ul>
+    {% for skill in design_skills %}
+        <li><h6>Photoshop</h6><div class="progressbar-1" data-progress="{{ skill.photoshop }}"></div></li>
+        <li><h6>Illustrator</h6><div class="progressbar-2" data-progress="{{ skill.illustrator }}"></div></li>
+        <li><h6>Adobe XD</h6><div class="progressbar-3" data-progress="{{ skill.adobexd }}"></div></li>
+        <li><h6>Sketch</h6><div class="progressbar-4" data-progress="{{ skill.sketch }}"></div></li>
+        <li><h6>In Design</h6><div class="progressbar-5" data-progress="{{ skill.indesign }}"></div></li>
+        <li><h6>HTML/CSS</h6><div class="progressbar-6" data-progress="{{ skill.imposition }}"></div></li>
+    {% endfor %}
+    </ul>
+</div>
+
+<div class="language-skills">
+    <h2>LANGUAGES</h2>
+    <ul>
+        {% for skill in languages %}
+            <li>
+                <div class="c100 p{{ skill.level }}">
+                    <span>{{ skill }}</span>
+                    <div class="slice">
+                        <p class="skill-sertification">{{ skill.qualification }}</p>
+                    </div>
+                    <div class="bar"></div>
+                    <div class="fill"></div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="interest">
+    <h2>INTERESTS</h2>
+    <ul>
+        {% for interest in interests %}
+            <li>
+                {% if interest.interest_logotype %}
+                    <img src="{{ interest.interest_logotype.url }}" />
+                {% endif %}
+                <span>{{ interest }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="references">
+    <h2>REFEREANCES</h2>
+    {% for item in refereances %}
+        <ul>
+            <li>{{ item }}</li>
+            <li>{{ item.company }}</li>
+            <li>{{ item.phone }}</li>
+            <li>{{ item.email }}</li>
+        </ul>
+    {% endfor %}
+</div>

@@ -81,7 +81,8 @@ class DesignSkills(models.Model):
 class LanguageSkills(models.Model):
     human = models.ForeignKey(Profile)
     language = models.CharField(max_length=100)
-    level = models.IntegerField(blank=True, null=True)
+    qualification = models.CharField(max_length=50, blank=True, null=True)
+    level = models.IntegerField()
 
     def __str__(self):
         return self.language

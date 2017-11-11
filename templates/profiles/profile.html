@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'main.html' %}
 
 <html lang="en">
 <head>
@@ -7,123 +7,11 @@
 </head>
 <body>
 {% block left-content %}
-    <div class="general-info">
-        {% if user.photo %}
-            <img src="{{ user.photo.url }}" class="user-photo">
-        {% else %}
-            <img src="http://placehold.it/200x200" />
-        {% endif %}
-
-        <h1>{{ user.full_name }}</h1>
-        <h4>Current Job</h4>
-        <p>soc1 soc2 soc3 soc 4</p>
-        <p>{{ user.email }}</p>
-        <p>{{ user.phone }}</p>
-        <p>{{ user.website }}</p>
-        <p>{{ locality.full_locality }}</p>
-    </div>
-    <div class="design-skills">
-        <h2>DESIGN SKILLS</h2>
-        <ul>
-        {% for skill in design_skills %}
-            <li><h6>Photoshop</h6> <div class="progressbar-1" data-progress="{{ skill.photoshop }}"></div> {{ skill.photoshop }}</li>
-            <li><h6>Illustrator</h6><div class="progressbar-2" data-progress="{{ skill.illustrator }}"></div>{{ skill.illustrator }}</li>
-            <li><h6>Adobe XD</h6><div class="progressbar-3" data-progress="{{ skill.adobexd }}"></div>{{ skill.adobexd }}</li>
-            <li><h6>Sketch</h6><div class="progressbar-4" data-progress="{{ skill.sketch }}"></div>{{ skill.sketch }}</li>
-            <li><h6>In Design</h6><div class="progressbar-5" data-progress="{{ skill.indesign }}"></div>{{ skill.indesign }}</li>
-            <li><h6>HTML/CSS</h6><div class="progressbar-6" data-progress="{{ skill.imposition }}"></div>{{ skill.imposition }}</li>
-        {% endfor %}
-        </ul>
-    </div>
-    <div class="language-skills">
-        <div class="row">
-            <h2>LANGUAGES</h2>
-            <ul>
-            {% for skill in languages %}
-                <div class="col-lg-4">
-                <li>
-                    <div class="c100 p{{ skill.level }}">
-                        <span>{{ skill }}</span>
-                        <div class="slice">
-                        <div class="bar"></div>
-                        <div class="fill"></div>
-                    </div>
-                </li>
-                </div>
-            {% endfor %}
-            </ul>
-        </div>
-    </div>
-    <div class="interest">
-        <h2>INTERESTS</h2>
-        <ul>
-            {% for interest in interests %}
-                <li>
-                    {% if interest.interest_logotype %}
-                        <img src="{{ interest.interest_logotype.url }}" />
-                    {% endif %}
-                    {{ interest }}
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="references">
-        <h2>REFEREANCES</h2>
-        {% for item in refereances %}
-            <ul>
-                <li>{{ item }}</li>
-                <li>{{ item.company }}</li>
-                <li>{{ item.phone }}</li>
-                <li>{{ item.email }}</li>
-            </ul>
-        {% endfor %}
-    </div>
+    {% include "profiles/left-content.html" %}
 {% endblock left-content %}
 
 {% block right-content %}
-    <div class="personal-statement">
-        <h2>PERSONAL STATEMENT</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut distinctio doloremque ducimus
-           impedit quia sint voluptatum! Ad commodi, eligendi ex exercitationem, incidunt laboriosam laudantium
-           libero necessitatibus non provident quod ut! Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-           Animi asperiores consequuntur earum enim facere fugiat iste laborum magnam nobis numquam officiis quia
-           ratione, recusandae sequi, sunt? Excepturi fuga id numquam.
-        </p>
-    </div>
-    <div class="work-experience">
-        <h2>WORK EXPERIENCE</h2>
-        {% for item in experience %}
-            <ul>
-                <li>{{ item }}</li>
-                <li>{{ item.position }}</li>
-                <li>{{ item.work_start | date:"M, Y" }}--{{ item.work_end | date:"M, Y"}}</li>
-                <li>{{ item.work_duration }}</li>
-                <li>{{ item.description }}</li>
-            </ul>
-        {% endfor %}
-    </div>
-    <div class="education-qualifications">
-        <h2>EDUCATION QUALIFICATIONS</h2>
-        {% for item in education %}
-            <ul>
-                <li>{{ item }}</li>
-                <li>{{ item.school }}</li>
-                <li>{{ item.education_duration }}</li>
-                <li>{{ item.some_text }}</li>
-            </ul>
-        {% endfor %}
-    </div>
-    <div class="other-qualifications">
-        <h2>OTHER QUALIFICATIONS</h2>
-        {% for item in other %}
-            <ul>
-                <li>{{ item }}</li>
-                <li>{{ item.web_sourse }}</li>
-                <li>{{ item.other_duration }}</li>
-                <li>{{ item.some_text }}</li>
-            </ul>
-        {% endfor %}
-    </div>
+    {% include "profiles/right-content.html" %}
 {% endblock right-content %}
 </body>
 </html>
