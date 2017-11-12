@@ -4,12 +4,6 @@
             {% if user.is_active %}
                 <li><a href="{% url 'user_profile' id=user.id %}">Get our page</a></li>
             {% endif %}
-
-{#            {% if request.user.id == user.id %}#}
-{#                <li><a href="{% url 'profile-edit' id=user.id %}">Edit profile</a>#}
-{#            {% endif %}#}
-
-
             <li><a href="/auth/logout/">Logout ({{ user.user_name }})</a></li>
         {% else %}
             <form action="/auth/login/" method="post" class="login-form">

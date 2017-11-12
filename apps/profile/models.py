@@ -14,6 +14,7 @@ class Interest(models.Model):
 class Profile(models.Model):
     user_name = models.OneToOneField(User, on_delete=models.CASCADE)
     last_name = models.CharField(max_length=50)
+    job = models.CharField(max_length=50, blank=True, null=True)
     age = models.PositiveIntegerField()
     photo = models.ImageField(upload_to='people_photos/')
     email = models.EmailField(unique=True)
@@ -77,12 +78,17 @@ class EducationQualifications(models.Model):
 
 class DesignSkills(models.Model):
     human = models.ForeignKey(Profile)
-    photoshop = models.IntegerField(help_text="sss")
-    illustrator = models.IntegerField()
-    adobexd = models.IntegerField()
-    sketch = models.IntegerField()
-    indesign = models.IntegerField()
-    imposition = models.IntegerField()
+    skill = models.CharField(max_length=50, blank=True, null=True)
+    level = models.IntegerField(blank=True, null=True)
+    # photoshop = models.IntegerField(help_text="sss")
+    # illustrator = models.IntegerField()
+    # adobexd = models.IntegerField()
+    # sketch = models.IntegerField()
+    # indesign = models.IntegerField()
+    # imposition = models.IntegerField()
+
+    # def __str__(self):
+    #     return self.skill
 
     def get_absolute_url(self):
         return reverse("user_profile", kwargs={"id": self.human.id})

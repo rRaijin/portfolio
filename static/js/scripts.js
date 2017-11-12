@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    //Топорно конечно и лишь для первого юзера с 6-ю скилами
     $(function () {
             $('.progressbar-1').progressbar({
                 value: $('.progressbar-1').data("progress")

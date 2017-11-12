@@ -1357,6 +1357,10 @@ h2 a {
     height: auto; }
     .language-skills ul li span {
       color: #000; }
+    .language-skills ul li a {
+      color: red;
+      margin-right: 10px;
+      font-size: 12px !important; }
 
 .c100:after {
   background-color: transparent !important; }

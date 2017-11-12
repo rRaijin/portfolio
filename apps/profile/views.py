@@ -39,7 +39,7 @@ def profile(request, id):
 class EditProfile(UpdateView):
     model = Profile
     fields = [
-        'user_name', 'last_name', 'age', 'photo', 'email', 'website', 'phone', 'statement', 'interests'
+        'user_name', 'last_name', 'job', 'age', 'photo', 'email', 'website', 'phone', 'statement', 'interests'
     ]
     template_name = "user-self-configuration.html"
 

@@ -6,7 +6,7 @@
     {% endif %}
 
     <h1>{{ user.full_name }}</h1>
-    <h3>Current Job</h3>
+    <h3>{{ user.job }}</h3>
     <p>soc1 soc2 soc3 soc 4</p>
     <p>{{ user.email }}</p>
     <p>{{ user.phone }}</p>
@@ -21,28 +21,25 @@
 <div class="design-skills">
     <h2>DESIGN SKILLS</h2>
     <ul>
+{#    КОСТЫЛЬ НА КЛАСС ПРОГРЕСС-БАРА БУДЕТ РАБОТАТЬ ТОЛЬКО ДЛЯ Fahad   #}
     {% for skill in design_skills %}
-        <li><h6>Photoshop</h6><div class="progressbar-1" data-progress="{{ skill.photoshop }}"></div></li>
-        <li><h6>Illustrator</h6><div class="progressbar-2" data-progress="{{ skill.illustrator }}"></div></li>
-        <li><h6>Adobe XD</h6><div class="progressbar-3" data-progress="{{ skill.adobexd }}"></div></li>
-        <li><h6>Sketch</h6><div class="progressbar-4" data-progress="{{ skill.sketch }}"></div></li>
-        <li><h6>In Design</h6><div class="progressbar-5" data-progress="{{ skill.indesign }}"></div></li>
-        <li><h6>HTML/CSS</h6><div class="progressbar-6" data-progress="{{ skill.imposition }}"></div></li>
+        <li><h6>{{ skill.skill }}</h6><div class="progressbar-{{ skill.id }}" data-progress="{{ skill.level }}"></div></li>
     {% endfor %}
     </ul>
 </div>
 
 <div class="language-skills">
     <h2>
+
+{#    css для circle-bar взят из сети и полностью не успел разобраться,      #}
+{#        работает с ошибкой, некорректно показывает значения меньше 50%     #}
+
         LANGUAGES
         {% if request.user.id == user.id %}
             <a href="{% url 'lang-add' id=user.id %}">Add language</a>
         {% endif %}
     </h2>
     <ul>
-{#        {% if request.user.id == user.id %}#}
-{#            <a href="{% url 'lang-add' id=user.id %}">add</a>#}
-{#        {% endif %}#}
         {% for skill in languages %}
             <li>
                 <div class="c100 p{{ skill.level }}">
