@@ -1,0 +1,29 @@
+<div class="logg">
+    <ul>
+        {% if request.user.is_active %}
+            {% if user.is_active %}
+                <li><a href="{% url 'user_profile' id=user.id %}">Get our page</a></li>
+            {% endif %}
+
+{#            {% if request.user.id == user.id %}#}
+{#                <li><a href="{% url 'profile-edit' id=user.id %}">Edit profile</a>#}
+{#            {% endif %}#}
+
+
+            <li><a href="/auth/logout/">Logout ({{ user.user_name }})</a></li>
+        {% else %}
+            <form action="/auth/login/" method="post" class="login-form">
+                {% csrf_token %}
+                <label for="username">Name:</label>
+                <input type="text" name="username" id="username" placeholder="Your name here...">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" placeholder="Your password...">
+                {% if login_error %}
+                    <label class="error">{{ login_error }}</label>
+                {% endif %}
+                <input class="enter" type="submit" value="Login">
+                <div class="label" id="regg"><a href="/auth/register/">Registration</a></div>
+            </form>
+        {% endif %}
+    </ul>
+</div>

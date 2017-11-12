@@ -12,6 +12,10 @@
     <p>{{ user.phone }}</p>
     <p>{{ user.website }}</p>
     <p>{{ locality.full_locality }}</p>
+
+    {% if request.user.id == user.id %}
+        <p><a href="{% url 'profile-edit' id=user.id %}">Edit profile</a></p>
+    {% endif %}
 </div>
 
 <div class="design-skills">
@@ -29,8 +33,16 @@
 </div>
 
 <div class="language-skills">
-    <h2>LANGUAGES</h2>
+    <h2>
+        LANGUAGES
+        {% if request.user.id == user.id %}
+            <a href="{% url 'lang-add' id=user.id %}">Add language</a>
+        {% endif %}
+    </h2>
     <ul>
+{#        {% if request.user.id == user.id %}#}
+{#            <a href="{% url 'lang-add' id=user.id %}">add</a>#}
+{#        {% endif %}#}
         {% for skill in languages %}
             <li>
                 <div class="c100 p{{ skill.level }}">
@@ -41,6 +53,14 @@
                     <div class="bar"></div>
                     <div class="fill"></div>
                 </div>
+
+                {% if request.user.id == user.id %}
+                    <a href="{% url 'lang-edit' id=skill.id %}">edit</a>
+                {% endif %}
+
+                {% if request.user.id == user.id %}
+                    <a href="{% url 'lang-del' id=skill.id %}">del</a>
+                {% endif %}
             </li>
         {% endfor %}
     </ul>
@@ -61,7 +81,12 @@
 </div>
 
 <div class="references">
-    <h2>REFEREANCES</h2>
+    <h2>
+        REFEREANCES
+        {% if request.user.id == user.id %}
+            <a href="{% url 'ref-add' id=user.id %}">Add refereances</a>
+        {% endif %}
+    </h2>
     {% for item in refereances %}
         <ul>
             <li>{{ item }}</li>
@@ -69,5 +94,12 @@
             <li>{{ item.phone }}</li>
             <li>{{ item.email }}</li>
         </ul>
+        {% if request.user.id == user.id %}
+            <a href="{% url 'ref-edit' id=item.id %}">edit</a>
+        {% endif %}
+
+        {% if request.user.id == user.id %}
+            <a href="{% url 'ref-del' id=item.id %}">del</a>
+        {% endif %}
     {% endfor %}
 </div>

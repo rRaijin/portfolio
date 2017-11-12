@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('apps.profile.urls')),
     # url(r'^', include('apps.administrator.urls')),
-    # url(r'^auth/', include('apps.loginsys.urls')),
+    url(r'^auth/', include('apps.loginsys.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

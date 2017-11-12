@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class Interest(models.Model):
@@ -13,12 +14,12 @@ class Interest(models.Model):
 class Profile(models.Model):
     user_name = models.OneToOneField(User, on_delete=models.CASCADE)
     last_name = models.CharField(max_length=50)
-    age = models.PositiveIntegerField(help_text="age must be positive")
+    age = models.PositiveIntegerField()
     photo = models.ImageField(upload_to='people_photos/')
     email = models.EmailField(unique=True)
     website = models.CharField(max_length=100, unique=True)
     phone = models.CharField(max_length=20, blank=True, null=True)
-    statement = models.TextField()
+    statement = models.TextField(max_length=500)
     interests = models.ManyToManyField(Interest)
 
     def __str__(self):
@@ -52,6 +53,9 @@ class WorkExperience(models.Model):
     def work_duration(self):
         return "%s-%s" % (self.work_start, self.work_end)
 
+    def get_absolute_url(self):
+        return reverse("user_profile", kwargs={"id": self.human.id})
+
 
 class EducationQualifications(models.Model):
     human = models.ForeignKey(Profile)
@@ -67,6 +71,9 @@ class EducationQualifications(models.Model):
     def education_duration(self):
         return "%s-%s" % (self.study_start, self.study_end)
 
+    def get_absolute_url(self):
+        return reverse("user_profile", kwargs={"id": self.human.id})
+
 
 class DesignSkills(models.Model):
     human = models.ForeignKey(Profile)
@@ -76,6 +83,9 @@ class DesignSkills(models.Model):
     sketch = models.IntegerField()
     indesign = models.IntegerField()
     imposition = models.IntegerField()
+
+    def get_absolute_url(self):
+        return reverse("user_profile", kwargs={"id": self.human.id})
 
 
 class LanguageSkills(models.Model):
@@ -87,6 +97,9 @@ class LanguageSkills(models.Model):
     def __str__(self):
         return self.language
 
+    def get_absolute_url(self):
+        return reverse("user_profile", kwargs={"id": self.human.id})
+
 
 class Refereances(models.Model):
     human = models.ForeignKey(Profile)
@@ -97,6 +110,9 @@ class Refereances(models.Model):
 
     def __str__(self):
         return self.director
+
+    def get_absolute_url(self):
+        return reverse("user_profile", kwargs={"id": self.human.id})
 
 
 class OtherQualifications(models.Model):
@@ -112,4 +128,7 @@ class OtherQualifications(models.Model):
 
     def other_duration(self):
         return "%s to %s" % (self.some_start, self.some_end)
+
+    def get_absolute_url(self):
+        return reverse("user_profile", kwargs={"id": self.human.id})
 
