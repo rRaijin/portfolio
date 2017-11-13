@@ -1,0 +1,10 @@
+Знаю, пишется нетак, не успел разобраться.
+
+Virtual enviropment
+Python     3.6.2
+Django     1.11.7
+Pillow     4.3.0
+olefile    0.44
+pip        9.0.1
+setuptools 36.6.0
+wheel      0.30.0
